@@ -5,7 +5,8 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { EntityNotFoundError, getConnection } from 'typeorm';
+import { EntityNotFoundError } from 'typeorm';
+import dataSource from '../database/data-source';
 
 export function Exists(
   entityClass: any,
@@ -32,8 +33,8 @@ export class ExistsRule implements ValidatorConstraintInterface {
     }
     try {
       const [entityClass, field] = args.constraints;
-      const conn = getConnection('default');
-      const repository = conn.getRepository(entityClass);
+      if (!dataSource.isInitialized) await dataSource.initialize();
+      const repository = dataSource.getRepository(entityClass);
       const result = await repository.findOne({
         where: {
           [field]: value,

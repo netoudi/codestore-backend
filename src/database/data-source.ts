@@ -13,4 +13,5 @@ export default new DataSource({
   password: configService.get('TYPEORM_PASSWORD'),
   database: configService.get('TYPEORM_DATABASE'),
   migrations: [__dirname + '/../database/migrations/**'],
+  entities: [__dirname + '/../**/entities/**.entity{.js,.ts}'],
 });
