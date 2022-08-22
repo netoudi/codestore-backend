@@ -6,7 +6,7 @@ services:
     entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
     container_name: codestore-backend-app
     ports:
-      - "3333:3000"
+      - "3333:3333"
     volumes:
       - .:/home/node/app
     depends_on:
