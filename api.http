@@ -1,3 +1,7 @@
+///
+/// PRODUCTS
+///
+
 ### GET list all products
 GET {{baseUrl}}/products
 Accept: application/json
@@ -31,4 +35,36 @@ Accept: application/json
 
 ### DELETE remove a product
 DELETE {{baseUrl}}/products/0652b8be-d602-4046-bf8a-e700a39e8e5e
+Content-Type: application/json
+
+///
+/// ORDERS
+///
+
+### POST create a new order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "credit_card": {
+    "number": "1234123412341234",
+    "name": "John Doe",
+    "expiration_month": 12,
+    "expiration_year": 2022,
+    "cvv": "123"
+  },
+  "items": [
+    {
+      "quantity": 1,
+      "product_id": "04e530f2-dc01-4c6a-bbe0-9f40f32c16fa"
+    }
+  ]
+}
+
+### GET list all orders
+GET {{baseUrl}}/orders
+Content-Type: application/json
+
+### GET orders details
+GET {{baseUrl}}/orders/6233a2f9-eeb0-497a-b546-46d4496e9808
 Content-Type: application/json
